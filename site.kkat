@@ -1,0 +1,886 @@
+<kkat>
+
+style page {
+    background color cream
+    text color dark gray
+    font family sans
+    padding large
+}
+
+style heading {
+    color navy
+    font size huge
+    margin bottom small
+}
+
+style subheading {
+    color navy
+    font size large
+    margin bottom small
+}
+
+style paragraph {
+    margin bottom medium
+}
+
+style button {
+    background color navy
+    text color white
+    rounded
+    transition smooth
+    when hover {
+        background color coral
+    }
+}
+
+style link {
+    color navy
+    underline
+    when hover {
+        text color coral
+    }
+}
+
+look("navbar") {
+    background color navy
+    text color white
+    padding medium
+    spread horizontally
+    space between
+    sticky top
+    shadow
+}
+
+look("card") {
+    background color white
+    padding large
+    rounded
+    shadow
+    max width medium
+    margin bottom large
+}
+
+look("code") {
+    font family mono
+    font size small
+    background color light gray
+    padding medium
+    rounded
+    border thin
+}
+
+look("tip") {
+    background color mint
+    padding medium
+    rounded
+    border color green
+    max width medium
+    margin bottom large
+}
+
+look("hero") {
+    gradient from navy to purple
+    text color white
+    padding huge
+    rounded
+    center
+    margin bottom large
+}
+
+component("nav") {
+    pagelink("Home", "home")
+    pagelink("Getting Started", "getting-started")
+    pagelink("Elements", "elements")
+    pagelink("Styling", "styling")
+    pagelink("Deploy", "deploy")
+    pagelink("Reference", "reference")
+}
+
+page("home") {
+    title("KittyKat — Build Websites with Plain English")
+    meta("description", "Official KittyKat documentation — learn to build websites with plain English syntax")
+    meta("author", "KittyKat")
+    meta("theme color", "#1a237e")
+
+    styled("navbar") {
+        use("nav")
+    }
+
+    styled("hero") {
+        badge("v0.2")
+        heading("KittyKat")
+        subheading("Build real websites with plain English")
+        paragraph("No HTML. No CSS files. Just one site.kkat file and simple words.")
+        button {
+            text("Get Started")
+            goto("getting-started")
+        }
+    }
+
+    styled("card") {
+        heading("What is KittyKat?")
+        paragraph("KittyKat is a website builder that turns plain English into HTML and CSS. You write pages in a single file called site.kkat using simple elements like heading(), paragraph(), and button {}. KittyKat compiles your words into a real, working website.")
+        quote("If you can write a sentence, you can build a website with KittyKat.")
+    }
+
+    styled("card") {
+        heading("Why use KittyKat?")
+        list {
+            item("Learn in minutes — syntax reads like English, not code")
+            item("One file to rule them all — your entire site lives in site.kkat")
+            item("Instant preview — kkat serve compiles on the fly, no build step needed")
+            item("Real output — generates standard HTML and CSS you can deploy anywhere")
+            item("Reusable pieces — components and looks keep your site DRY")
+        }
+    }
+
+    styled("card") {
+        heading("Features")
+        row {
+            column {
+                subheading("Elements")
+                paragraph("Headings, paragraphs, buttons, images, lists, and more — all with plain words.")
+            }
+            column {
+                subheading("Styling")
+                paragraph("Say background color navy instead of writing CSS properties by hand.")
+            }
+            column {
+                subheading("Layout")
+                paragraph("Use row, column, and box blocks to arrange content without flexbox knowledge.")
+            }
+        }
+        divider
+        paragraph("Ready to build your first site?")
+        button {
+            text("Read the Getting Started Guide")
+            goto("getting-started")
+        }
+    }
+}
+
+page("getting-started") {
+    title("Getting Started — KittyKat")
+    meta("description", "How to create, build, serve, and preview a KittyKat website")
+
+    styled("navbar") {
+        use("nav")
+    }
+
+    heading("Getting Started")
+
+    styled("tip") {
+        paragraph("New to KittyKat? Start here. You only need Python installed and the KittyKat CLI.")
+    }
+
+    styled("card") {
+        subheading("1. Create a new project")
+        paragraph("Run the new command to scaffold a project folder with a starter site.kkat file:")
+        styled("code") {
+            paragraph("kkat new mysite")
+        }
+        paragraph("This creates a mysite/ folder with site.kkat, dist/assets/, and a .gitignore file.")
+    }
+
+    styled("card") {
+        subheading("2. Edit site.kkat")
+        paragraph("Open site.kkat in any text editor. Everything between <kkat> and </kkat> is your site. Add pages, style words, components, and content blocks.")
+        styled("code") {
+            paragraph("page(\"home\") {")
+            paragraph("    title(\"My Site\")")
+            paragraph("    heading(\"Hello!\")")
+            paragraph("}")
+        }
+    }
+
+    styled("card") {
+        subheading("3. Preview live with kkat serve")
+        paragraph("kkat serve starts a local server that reads site.kkat directly — no build step required. Edit the file, refresh your browser, and see changes instantly.")
+        styled("code") {
+            paragraph("kkat serve")
+        }
+        paragraph("The server runs at http://localhost:3000 by default. Put images in dist/assets/.")
+    }
+
+    styled("card") {
+        subheading("4. Build static files with kkat build")
+        paragraph("When you are ready to deploy, run build to generate a dist/ folder with real HTML and CSS files:")
+        styled("code") {
+            paragraph("kkat build")
+        }
+        paragraph("KittyKat prints a success message and lists every file it created.")
+    }
+
+    styled("card") {
+        subheading("5. Preview the built site with kkat preview")
+        paragraph("kkat preview builds dist/ and then serves those static files. It also watches site.kkat and rebuilds automatically when you save changes.")
+        styled("code") {
+            paragraph("kkat preview")
+        }
+        paragraph("Use preview to test exactly what will be deployed — real files, not runtime compilation.")
+    }
+
+    styled("card") {
+        subheading("The dist/ folder structure")
+        paragraph("After running kkat build, your output looks like this:")
+        styled("code") {
+            paragraph("dist/")
+            paragraph("  index.html          (home page)")
+            paragraph("  pages/")
+            paragraph("    about.html        (other pages)")
+            paragraph("    contact.html")
+            paragraph("  styles/")
+            paragraph("    site.css          (generated stylesheet)")
+            paragraph("  assets/")
+            paragraph("    logo.png          (your images go here)")
+        }
+        paragraph("Home page is always index.html. Every other page lives in pages/ as a .html file. Global styles and looks compile into styles/site.css.")
+    }
+
+    styled("tip") {
+        paragraph("Workflow tip: use kkat serve while writing, then kkat build before deploying. Run kkat preview to double-check the final output.")
+    }
+}
+
+page("elements") {
+    title("Elements — KittyKat")
+    meta("description", "Complete reference for every KittyKat element")
+
+    styled("navbar") {
+        use("nav")
+    }
+
+    heading("Elements")
+    paragraph("Elements are the building blocks of every KittyKat page. Each one maps to real HTML.")
+
+    styled("card") {
+        subheading("heading()")
+        paragraph("Creates an <h1> heading. Add a style block in curly braces to override styles for this instance.")
+        styled("code") {
+            paragraph("heading(\"Welcome to KittyKat\")")
+            paragraph("heading(\"Centered Title\") { center }")
+        }
+        heading("Live example")
+    }
+
+    styled("card") {
+        subheading("subheading()")
+        paragraph("Creates an <h2> subheading. Great for section titles within a page.")
+        styled("code") {
+            paragraph("subheading(\"How it works\")")
+            paragraph("subheading(\"Details\") { color purple }")
+        }
+        subheading("This is a live subheading")
+    }
+
+    styled("card") {
+        subheading("paragraph()")
+        paragraph("Creates a <p> paragraph. The text inside quotes is displayed as-is.")
+        styled("code") {
+            paragraph("paragraph(\"KittyKat turns plain English into websites.\")")
+        }
+        paragraph("This paragraph was rendered by KittyKat.")
+    }
+
+    styled("card") {
+        subheading("quote()")
+        paragraph("Creates a <blockquote> for pull quotes or callouts.")
+        styled("code") {
+            paragraph("quote(\"Simplicity is the ultimate sophistication.\")")
+        }
+        quote("Quotes get a left border and soft background automatically.")
+    }
+
+    styled("card") {
+        subheading("badge()")
+        paragraph("Creates a small inline label, useful for tags, versions, or status indicators.")
+        styled("code") {
+            paragraph("badge(\"New\")")
+            paragraph("badge(\"Beta\")")
+        }
+        row {
+            badge("New")
+            badge("Docs")
+            badge("v0.2")
+        }
+    }
+
+    styled("card") {
+        subheading("link()")
+        paragraph("Creates an <a> tag linking to an external URL or any path you provide. Use this for outside links, not for pages in your site.")
+        styled("code") {
+            paragraph("link(\"Visit GitHub\", \"https://github.com\")")
+        }
+    }
+
+    styled("card") {
+        subheading("pagelink()")
+        paragraph("Creates a link to another page in your KittyKat site. KittyKat figures out the correct relative path — never write .html paths yourself.")
+        styled("code") {
+            paragraph("pagelink(\"Home\", \"home\")")
+            paragraph("pagelink(\"About\", \"about\")")
+        }
+        paragraph("Always use pagelink() for internal navigation.")
+    }
+
+    styled("card") {
+        subheading("image()")
+        paragraph("Creates an <img> tag. Put image files in dist/assets/. KittyKat resolves the path automatically.")
+        styled("code") {
+            paragraph("image(\"Logo\", \"logo.png\")")
+            paragraph("image(\"Photo\", \"https://example.com/photo.jpg\")")
+        }
+        paragraph("Local images: dist/assets/logo.png. Remote images: use a full https:// URL.")
+    }
+
+    styled("card") {
+        subheading("button {}")
+        paragraph("Creates a clickable button. Use text() for the label and goto() to link to another page.")
+        styled("code") {
+            paragraph("button {")
+            paragraph("    text(\"Click Me\")")
+            paragraph("    goto(\"about\")")
+            paragraph("}")
+        }
+        button {
+            text("Example Button")
+            goto("getting-started")
+        }
+    }
+
+    styled("card") {
+        subheading("box {}")
+        paragraph("A generic container <div>. Put style words first, then content elements inside.")
+        styled("code") {
+            paragraph("box {")
+            paragraph("    background color white")
+            paragraph("    padding large")
+            paragraph("    rounded")
+            paragraph("    paragraph(\"Inside a box\")")
+            paragraph("}")
+        }
+    }
+
+    styled("card") {
+        subheading("row {}")
+        paragraph("A horizontal flex container. Children sit side by side.")
+        styled("code") {
+            paragraph("row {")
+            paragraph("    column { paragraph(\"Left\") }")
+            paragraph("    column { paragraph(\"Right\") }")
+            paragraph("}")
+        }
+        row {
+            box {
+                background color lavender
+                padding medium
+                rounded
+                paragraph("Column A")
+            }
+            box {
+                background color mint
+                padding medium
+                rounded
+                paragraph("Column B")
+            }
+        }
+    }
+
+    styled("card") {
+        subheading("column {}")
+        paragraph("A vertical flex container. Children stack top to bottom.")
+        styled("code") {
+            paragraph("column {")
+            paragraph("    subheading(\"Title\")")
+            paragraph("    paragraph(\"Description\")")
+            paragraph("}")
+        }
+    }
+
+    styled("card") {
+        subheading("list {}")
+        paragraph("Creates a <ul> unordered list. Add items with item() inside the block.")
+        styled("code") {
+            paragraph("list {")
+            paragraph("    item(\"First thing\")")
+            paragraph("    item(\"Second thing\")")
+            paragraph("    item(\"Third thing\")")
+            paragraph("}")
+        }
+        list {
+            item("Write your site in site.kkat")
+            item("Run kkat serve to preview")
+            item("Run kkat build to deploy")
+        }
+    }
+
+    styled("card") {
+        subheading("divider")
+        paragraph("Inserts a horizontal rule <hr> to separate sections.")
+        styled("code") {
+            paragraph("divider")
+        }
+        paragraph("Content above the line.")
+        divider
+        paragraph("Content below the line.")
+    }
+
+    styled("card") {
+        subheading("meta()")
+        paragraph("Adds <meta> tags to the page <head>. Supported keys include description, author, and theme color.")
+        styled("code") {
+            paragraph("meta(\"description\", \"My page description\")")
+            paragraph("meta(\"author\", \"Your Name\")")
+            paragraph("meta(\"theme color\", \"#1a237e\")")
+        }
+    }
+
+    styled("card") {
+        subheading("styled()")
+        paragraph("Wraps content in a named look. Looks are reusable style presets defined with look(\"name\") at the top of site.kkat.")
+        styled("code") {
+            paragraph("styled(\"card\") {")
+            paragraph("    heading(\"Inside a card\")")
+            paragraph("    paragraph(\"This content uses the card look.\")")
+            paragraph("}")
+        }
+    }
+
+    styled("card") {
+        subheading("use()")
+        paragraph("Inserts a component by name. Components are reusable blocks defined with component(\"name\").")
+        styled("code") {
+            paragraph("styled(\"navbar\") {")
+            paragraph("    use(\"nav\")")
+            paragraph("}")
+        }
+    }
+
+    styled("card") {
+        subheading("component()")
+        paragraph("Defines a reusable block of elements. Place component definitions at the top level of site.kkat, outside any page.")
+        styled("code") {
+            paragraph("component(\"footer\") {")
+            paragraph("    divider")
+            paragraph("    paragraph(\"Built with KittyKat\")")
+            paragraph("}")
+        }
+        paragraph("Then call use(\"footer\") on any page where you want it to appear.")
+    }
+
+    styled("tip") {
+        paragraph("Page-level helpers: title() sets the browser tab title. meta() adds head tags. Both go inside page() but are not rendered in the body.")
+    }
+}
+
+page("styling") {
+    title("Styling — KittyKat")
+    meta("description", "Every style word available in KittyKat")
+
+    styled("navbar") {
+        use("nav")
+    }
+
+    heading("Styling")
+    paragraph("KittyKat uses plain English style words instead of CSS. Apply them in three places: global style blocks, look() presets, and inline on individual elements.")
+
+    styled("card") {
+        subheading("Global styles")
+        paragraph("Define default styles for element types at the top of site.kkat:")
+        styled("code") {
+            paragraph("style heading {")
+            paragraph("    color navy")
+            paragraph("    font size huge")
+            paragraph("}")
+            paragraph("style button {")
+            paragraph("    background color navy")
+            paragraph("    when hover {")
+            paragraph("        background color coral")
+            paragraph("    }")
+            paragraph("}")
+        }
+        paragraph("Supported global targets: page, heading, subheading, paragraph, button, link, image, list, quote, badge.")
+    }
+
+    styled("card") {
+        subheading("Looks")
+        paragraph("Named reusable style presets for wrapping content with styled():")
+        styled("code") {
+            paragraph("look(\"card\") {")
+            paragraph("    background color white")
+            paragraph("    padding large")
+            paragraph("    rounded")
+            paragraph("    shadow")
+            paragraph("}")
+        }
+    }
+
+    styled("card") {
+        subheading("Text alignment")
+        list {
+            item("center — center-align text")
+            item("left — left-align text")
+            item("right — right-align text")
+        }
+    }
+
+    styled("card") {
+        subheading("Text appearance")
+        list {
+            item("bold — bold font weight")
+            item("italic — italic font style")
+            item("underline — underline text")
+        }
+    }
+
+    styled("card") {
+        subheading("Colors")
+        paragraph("Named colors: white, black, red, orange, yellow, green, teal, blue, navy, purple, pink, gray, light gray, dark gray, coral, cream, lavender, mint, sky.")
+        paragraph("You can also use hex values like #1a237e.")
+        list {
+            item("background color navy")
+            item("text color white")
+            item("color purple")
+            item("border color green")
+        }
+    }
+
+    styled("card") {
+        subheading("Typography")
+        list {
+            item("font size tiny | small | medium | large | huge")
+            item("font size 24 (custom pixel value)")
+            item("font family sans | serif | mono")
+        }
+    }
+
+    styled("card") {
+        subheading("Spacing")
+        list {
+            item("padding small | medium | large | huge")
+            item("padding top medium")
+            item("padding bottom large")
+            item("padding left small")
+            item("padding right small")
+            item("margin medium")
+            item("margin top large")
+            item("margin bottom small")
+            item("gap medium — space between flex children")
+        }
+        paragraph("Spacing keywords: none, tiny, small, medium, large, huge. Or use a number for pixels.")
+    }
+
+    styled("card") {
+        subheading("Size and shape")
+        list {
+            item("width full — 100% width")
+            item("width 300 — custom width in pixels")
+            item("max width narrow | medium | wide")
+            item("rounded — 8px border radius")
+            item("rounded corners — same as rounded")
+        }
+    }
+
+    styled("card") {
+        subheading("Borders and shadows")
+        list {
+            item("border thin — 1px solid border")
+            item("border thick — 4px solid border")
+            item("border color navy")
+            item("shadow — medium box shadow")
+            item("soft shadow — lighter box shadow")
+        }
+    }
+
+    styled("card") {
+        subheading("Layout and flexbox")
+        list {
+            item("spread horizontally — flex row layout")
+            item("stack vertically — flex column layout")
+            item("space between — justify-content space-between")
+            item("space evenly — justify-content space-evenly")
+            item("space around — justify-content space-around")
+            item("align center — align-items center")
+            item("align start — align-items flex-start")
+            item("align end — align-items flex-end")
+            item("gap medium — gap between flex items")
+        }
+    }
+
+    styled("card") {
+        subheading("Position and effects")
+        list {
+            item("sticky top — sticks to top of viewport while scrolling")
+            item("opacity light | medium | heavy (or a number 0–1)")
+            item("transition smooth — smooth 0.2s transitions")
+            item("gradient from navy to purple — linear gradient background")
+        }
+        paragraph("The navbar on this site uses sticky top. The hero section on the home page uses gradient from navy to purple.")
+    }
+
+    styled("card") {
+        subheading("Hover styles")
+        paragraph("Use when hover { } to define styles that apply on mouse hover. Works in global styles, looks, box blocks, and inline element styles.")
+        styled("code") {
+            paragraph("style button {")
+            paragraph("    background color navy")
+            paragraph("    text color white")
+            paragraph("    when hover {")
+            paragraph("        background color coral")
+            paragraph("    }")
+            paragraph("}")
+        }
+        paragraph("You can also use shorthand hover lines: hover background color coral, hover text color white.")
+        button {
+            text("Hover over me")
+            goto("reference")
+        }
+    }
+
+    styled("tip") {
+        paragraph("Inline styles go in curly braces right after an element: heading(\"Title\") { center color navy }")
+    }
+}
+
+page("deploy") {
+    title("Deploy — KittyKat")
+    meta("description", "How to serve, preview, and deploy KittyKat sites to Vercel")
+
+    styled("navbar") {
+        use("nav")
+    }
+
+    heading("Deploy")
+    paragraph("KittyKat gives you three ways to run your site locally, plus one-click deployment to Vercel.")
+
+    styled("card") {
+        subheading("kkat serve — live development")
+        paragraph("Reads site.kkat directly at runtime. No dist/ folder needed. Every request compiles the source file fresh (with caching by file modification time).")
+        styled("code") {
+            paragraph("kkat serve")
+        }
+        list {
+            item("Best for: active development and quick iteration")
+            item("URL: http://localhost:3000")
+            item("Edit site.kkat, save, refresh — changes appear immediately")
+            item("Serves CSS dynamically from the compiler")
+            item("Serves images from dist/assets/")
+        }
+    }
+
+    styled("card") {
+        subheading("kkat preview — static preview")
+        paragraph("Builds dist/ first, then serves the generated HTML and CSS files. Also watches site.kkat and rebuilds on save.")
+        styled("code") {
+            paragraph("kkat preview")
+        }
+        list {
+            item("Best for: testing the exact files you will deploy")
+            item("Runs kkat build automatically before serving")
+            item("Auto-rebuild when site.kkat changes")
+            item("Serves real index.html and pages/*.html files")
+        }
+    }
+
+    styled("card") {
+        subheading("kkat build — generate static files")
+        paragraph("Creates the dist/ folder with everything needed for static hosting.")
+        styled("code") {
+            paragraph("kkat build")
+        }
+        paragraph("Upload the dist/ folder to any static host: Netlify, GitHub Pages, Cloudflare Pages, or an S3 bucket.")
+    }
+
+    styled("card") {
+        subheading("Deploy to Vercel")
+        paragraph("This KittyKat project includes Vercel support out of the box. Instead of uploading dist/, Vercel compiles site.kkat on every request using a Python serverless function.")
+        styled("code") {
+            paragraph("vercel.json")
+            paragraph("{")
+            paragraph("  \"builds\": [{ \"src\": \"api/index.py\", \"use\": \"@vercel/python\" }],")
+            paragraph("  \"routes\": [")
+            paragraph("    { \"src\": \"/styles/site.css\", \"dest\": \"api/index.py\" },")
+            paragraph("    { \"src\": \"/pages/(.*)\", \"dest\": \"api/index.py\" },")
+            paragraph("    { \"src\": \"/(.*)\", \"dest\": \"api/index.py\" }")
+            paragraph("  ]")
+            paragraph("}")
+        }
+        paragraph("All routes point to api/index.py, which calls compile_route() to render pages and CSS from site.kkat at request time.")
+    }
+
+    styled("card") {
+        subheading("Vercel deployment steps")
+        list {
+            item("Push your project to GitHub")
+            item("Import the repo in the Vercel dashboard")
+            item("Vercel detects vercel.json and deploys automatically")
+            item("No build command needed — site.kkat is the source of truth")
+            item("Every page and the stylesheet are generated on demand")
+        }
+    }
+
+    divider
+
+    row {
+        column {
+            styled("card") {
+                subheading("Development")
+                paragraph("kkat serve")
+                paragraph("Fast iteration. No build step.")
+            }
+        }
+        column {
+            styled("card") {
+                subheading("Pre-deploy check")
+                paragraph("kkat preview")
+                paragraph("Test real static output.")
+            }
+        }
+        column {
+            styled("card") {
+                subheading("Production")
+                paragraph("kkat build or Vercel")
+                paragraph("Static files or serverless compile.")
+            }
+        }
+    }
+
+    styled("tip") {
+        paragraph("For Vercel: keep site.kkat in the repo root. The api/index.py handler reads it and compiles pages on each request — no dist/ upload required.")
+    }
+}
+
+page("reference") {
+    title("Quick Reference — KittyKat")
+    meta("description", "KittyKat syntax cheat sheet")
+
+    styled("navbar") {
+        use("nav")
+    }
+
+    heading("Quick Reference")
+    paragraph("A cheat sheet of KittyKat syntax. Copy, adapt, and build.")
+
+    styled("card") {
+        subheading("File structure")
+        styled("code") {
+            paragraph("<kkat>")
+            paragraph("style page { ... }")
+            paragraph("look(\"card\") { ... }")
+            paragraph("component(\"nav\") { ... }")
+            paragraph("page(\"home\") { ... }")
+            paragraph("page(\"about\") { ... }")
+            paragraph("</kkat>")
+        }
+    }
+
+    styled("card") {
+        subheading("Page template")
+        styled("code") {
+            paragraph("page(\"pagename\") {")
+            paragraph("    title(\"Page Title\")")
+            paragraph("    meta(\"description\", \"Page description\")")
+            paragraph("    styled(\"navbar\") { use(\"nav\") }")
+            paragraph("    heading(\"Page Heading\")")
+            paragraph("    paragraph(\"Your content here.\")")
+            paragraph("}")
+        }
+    }
+
+    styled("card") {
+        subheading("Elements")
+        styled("code") {
+            paragraph("heading(\"Title\")")
+            paragraph("subheading(\"Section\")")
+            paragraph("paragraph(\"Text\")")
+            paragraph("quote(\"A quote\")")
+            paragraph("badge(\"Tag\")")
+            paragraph("link(\"Text\", \"https://url.com\")")
+            paragraph("pagelink(\"Text\", \"pagename\")")
+            paragraph("image(\"Alt\", \"file.png\")")
+            paragraph("divider")
+            paragraph("meta(\"description\", \"...\")")
+            paragraph("use(\"componentname\")")
+            paragraph("button { text(\"Label\") goto(\"page\") }")
+            paragraph("list { item(\"One\") item(\"Two\") }")
+            paragraph("box { padding large paragraph(\"...\") }")
+            paragraph("row { column { ... } column { ... } }")
+            paragraph("column { subheading(\"...\") paragraph(\"...\") }")
+            paragraph("styled(\"lookname\") { ... }")
+        }
+    }
+
+    styled("card") {
+        subheading("Style words")
+        styled("code") {
+            paragraph("center | left | right")
+            paragraph("bold | italic | underline")
+            paragraph("background color navy")
+            paragraph("text color white")
+            paragraph("color purple")
+            paragraph("font size large")
+            paragraph("font family sans")
+            paragraph("padding medium")
+            paragraph("padding top large")
+            paragraph("margin bottom small")
+            paragraph("gap medium")
+            paragraph("width full")
+            paragraph("max width medium")
+            paragraph("rounded | shadow | soft shadow")
+            paragraph("border thin | border color navy")
+            paragraph("spread horizontally | stack vertically")
+            paragraph("space between | space evenly | space around")
+            paragraph("align center | align start | align end")
+            paragraph("sticky top")
+            paragraph("opacity light")
+            paragraph("gradient from navy to purple")
+            paragraph("transition smooth")
+            paragraph("when hover { background color coral }")
+        }
+    }
+
+    styled("card") {
+        subheading("CLI commands")
+        styled("code") {
+            paragraph("kkat new mysite     Create a project")
+            paragraph("kkat serve          Live preview from site.kkat")
+            paragraph("kkat build          Generate dist/ folder")
+            paragraph("kkat preview        Build and serve dist/")
+            paragraph("kkat version        Show version")
+            paragraph("kkat help           Show help")
+        }
+    }
+
+    styled("card") {
+        subheading("Colors")
+        row {
+            column {
+                list {
+                    item("white, black")
+                    item("red, orange, yellow")
+                    item("green, teal, blue")
+                    item("navy, purple, pink")
+                }
+            }
+            column {
+                list {
+                    item("gray, light gray, dark gray")
+                    item("coral, cream, lavender")
+                    item("mint, sky")
+                    item("#hex values")
+                }
+            }
+        }
+    }
+
+    styled("tip") {
+        quote("Keep it simple. One site.kkat file. Plain English. Real websites.")
+        paragraph("Happy building!")
+        button {
+            text("Back to Home")
+            goto("home")
+        }
+    }
+}
+
+</kkat>
