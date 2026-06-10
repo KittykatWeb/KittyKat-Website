@@ -6,6 +6,7 @@ KittyKat is a simple language for creating static websites. You write one file (
 
 No HTML tags to memorize. No separate CSS files to manage. Easy enough for a child to learn, powerful enough for real projects.
 
+
 ## Install KittyKat
 
 ### Requirements
