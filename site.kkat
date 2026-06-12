@@ -31,7 +31,7 @@ look("card") {
 component("nav") {
     row {
         pagelink("Home", "home")
-        pagelink("Contact", "contact")
+        pagelink("About", "about")
     }
     divider
 }
@@ -104,17 +104,17 @@ page("home") {
     space
 
     button {
-        text("Contact Us")
-        goto("contact")
+        text("About Us")
+        goto("about")
     }
 
     use("footer")
 }
 
 // Contact page
-page("contact") {
+page("about") {
 
-    title("Contact")
+    title("About")
 
     use("nav")
 
