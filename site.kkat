@@ -118,17 +118,6 @@ page("about") {
 
     use("nav")
 
-    heading("Get In Touch")
-
-    paragraph("This form is for demonstration purposes.")
-
-    form {
-        input("Your Name")
-        email("Email Address")
-        textarea("Message")
-        submit("Send Message")
-    }
-
     heading("Why KittyKat?")
 
     list {
